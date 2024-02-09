@@ -1,0 +1,215 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Book Store APIs",
+        "description": "API documentation for the Book Store APIs"
+    },
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Authors",
+            "description": "Operations related to authors"
+        },
+        {
+            "name": "Books",
+            "description": "Operations related to books"
+        }
+    ],
+    "paths": {
+        "/authors": {
+            "get": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Get all authors",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Author"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Create a new Author",
+                "parameters": [
+                    {
+                        "name": "Author",
+                        "in": "body",
+                        "description": "Author to be created",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/newAuthor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Author created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/Author"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body"
+                    }
+                }
+            }
+        },
+        "/authors/{name}": {
+            "get": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Get author by name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Name of the author",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Author"
+                        }
+                    },
+                    "404": {
+                        "description": "Author not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Update Author Name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Name of the author to be change",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "Updated author Name",
+                        "required": true,
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/newAuthor"
+                        }
+                    }
+                ],
+                "response": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Author"
+                        }
+                    },
+                    "404": {
+                        "description": "Author not found"
+                    },
+                    "400": {
+                        "description": "Invalid request body"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Delete an existing author",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "name of the author to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "response": {
+                    "200": {
+                        "description": "Author deleted"
+                    },
+                    "404": {
+                        "description": "Author not found"
+                    }
+                }
+            }
+        },
+        "/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get all books",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Book"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Author": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "newAuthor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Book": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "genre": {
+                    "type": "string"
+                },
+                "author": {
+                    "$ref": "#/definitions/Author"
+                }
+            }
+        }
+    }
+}
