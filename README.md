@@ -15,7 +15,7 @@ The Book Management System is a web application designed to help users manage th
 
 - Node.js
 - Express.js
-- MongoDB (with Mongoose ODM)
+- MongoDB (with Mongoose ORM)
 - Multer for file uploads (for cover images)
 - HTML/CSS (for front-end, if applicable)
 
